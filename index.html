@@ -1,82 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Image Slideshow</title>
   <style>
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       margin: 0;
       background-color: black;
-      color: white;
-      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     img {
-      max-width: 90%;
-      max-height: 70vh;
-      margin: 20px 0;
-      border: 2px solid white;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       cursor: pointer;
-    }
-    input, button {
-      padding: 10px;
-      margin: 5px;
-      font-size: 16px;
     }
   </style>
 </head>
 <body>
+  <img id="randomImage" onclick="showRandomImage()" alt="Random Image">
 
-<h1>Random Image Slideshow</h1>
+  <script>
+    const images = [
+      "images/48ef2ad2c5612eef59d5a3185b9e4c1ec4a3ab40ee02dcd207dd79eac9762aa6.jpeg",
+      "images/9fa0e769077aa701ba6c31a22862bab421bdcbfbe3d9c1457a6e16799eac0a34.jpeg",
+      "images/asds.jpeg",
+      "images/c7decb8fec9d9b59314e24ad9ec6137d8bce2f86a9d62e1f11646c93353aed8a.jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(1).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(2).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(3).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(4).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(5).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(6).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(7).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(8).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac(9).jpeg",
+      "images/cfd4758381b3b1f694f122ec3dd9944da37a4b0c44842af7825606f33d889eac.jpeg",
+      "images/mgppkbkg1r58i3.jpeg",
+      "images/mgppkn65wqags3.jpeg",
+      "images/mgpplmzie2v3rd.jpeg",
+      "images/mgpq2fe0uprm0p.jpeg",
+      "images/mgpq2ga43hv2lz.jpeg",
+      "images/mgpqa0tjr461r7.jpeg",
+      "images/mgpqezgbwxjzol.jpeg",
+      "images/mgto6dugeka4jj.jpeg",
+      "images/mgtodfxt74foge.jpeg",
+      "images/mgtonu6s4vqd1d.jpeg",
+      "images/mgtouormpx9h48.jpeg",
+      "images/mgtp557tlm0wvx.jpeg",
+      "images/mgtpdbivem3pg9(1).jpeg",
+      "images/mgtpdbivem3pg9.jpeg",
+      "images/mgtrquodngvqxe.jpeg",
+      "images/mgtrqzex9t4f4k.jpeg",
+      "images/mgtru4akjt8sp1.jpeg",
+      "images/qv9j32s5wauf1.gif"
+    ];
 
-<img id="random-img" src="48ef2ad2c5612eef59d5a3185b9e4c1ec4a3ab40ee02dcd207dd79eac9762aa6.jpeg" alt="Random Image">
+    function showRandomImage() {
+      const index = Math.floor(Math.random() * images.length);
+      document.getElementById("randomImage").src = images[index];
+    }
 
-<label for="interval">Interval (seconds): </label>
-<input type="number" id="interval" value="5" min="1">
-<button onclick="setNewInterval()">Set Interval</button>
-
-<script>
-const images = [
-  "48ef2ad2c5612eef59d5a3185b9e4c1ec4a3ab40ee02dcd207dd79eac9762aa6.jpeg",
-  "9fa0e769077aa701ba6c31a22862bab421bdcbfbe3d9c1457a6e16799eac0a34.jpeg",
-  "asds.jpeg",
-  "c7decb8fec9d9b59314e24ad9ec6137d8bce2f86a9d62e1f11646c93353aed8a.jpeg"
-];
-
-let intervalId;
-
-function changeImage() {
-  const randomIndex = Math.floor(Math.random() * images.length);
-  document.getElementById("random-img").src = images[randomIndex];
-}
-
-// Start slideshow with specified interval
-function startSlideshow(seconds) {
-  if (intervalId) clearInterval(intervalId);
-  intervalId = setInterval(changeImage, seconds * 1000);
-}
-
-// Set new interval from input
-function setNewInterval() {
-  const seconds = parseFloat(document.getElementById("interval").value);
-  if (!isNaN(seconds) && seconds > 0) {
-    startSlideshow(seconds);
-  } else {
-    alert("Please enter a valid number greater than 0.");
-  }
-}
-
-// Manual change on click/tap
-document.getElementById("random-img").addEventListener("click", changeImage);
-
-// Initialize slideshow
-startSlideshow(5);
-</script>
-
+    // Show an image on load
+    showRandomImage();
+  </script>
 </body>
 </html>
-
